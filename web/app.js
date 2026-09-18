@@ -1,5 +1,25 @@
-// MCP-Shield Live Workbench State Machine
+import { initLightRays } from './light-rays.js';
 
+// Initialize LightRays WebGL Component in Hero
+const raysContainer = document.getElementById('light-rays-container');
+if (raysContainer) {
+  initLightRays(raysContainer, {
+    raysOrigin: 'top-center',
+    raysColor: '#00f0ff',
+    raysSpeed: 1.3,
+    lightSpread: 0.85,
+    rayLength: 1.8,
+    pulsating: true,
+    fadeDistance: 1.0,
+    saturation: 1.0,
+    followMouse: true,
+    mouseInfluence: 0.18,
+    noiseAmount: 0.08,
+    distortion: 0.06
+  });
+}
+
+// MCP-Shield Live Workbench State Machine
 const SCENARIOS = {
   rm_rf: {
     raw: `{
@@ -15,10 +35,10 @@ const SCENARIOS = {
 }`,
     verdict: "BLOCKED",
     verdictClass: "danger",
-    title: "RULE SEC-001 TRIGGERED",
+    ruleId: "RULE SEC-001 TRIGGERED",
     reason: "Destructive recursive directory removal detected on root/system path.",
-    redactions: "0 tokens",
-    forwarded: "NO (REJECTED)",
+    maskedTokens: "0 tokens",
+    forwardStatus: "REJECTED",
     sanitized: `{
   "jsonrpc": "2.0",
   "id": 101,
@@ -43,10 +63,10 @@ const SCENARIOS = {
 }`,
     verdict: "CONFIRMATION REQUIRED",
     verdictClass: "warning",
-    title: "RULE SEC-002 TRIGGERED",
+    ruleId: "RULE SEC-002 TRIGGERED",
     reason: "High-risk SQL statement modifying schema or dropping tables.",
-    redactions: "0 tokens",
-    forwarded: "PAUSED (PENDING HUMAN APPROVAL)",
+    maskedTokens: "0 tokens",
+    forwardStatus: "PAUSED (PENDING APPROVAL)",
     sanitized: `{
   "jsonrpc": "2.0",
   "id": 102,
@@ -71,10 +91,10 @@ const SCENARIOS = {
 }`,
     verdict: "SANITIZED & FORWARDED",
     verdictClass: "success",
-    title: "DLP TOKEN SCRUB APPLIED",
-    reason: "Scrubbed 2 sensitive API credential tokens in-flight.",
-    redactions: "2 tokens redacted",
-    forwarded: "YES (SANITIZED)",
+    ruleId: "DLP IN-FLIGHT REDACTION",
+    reason: "Scrubbed 2 sensitive API credential tokens from arguments.",
+    maskedTokens: "2 tokens redacted",
+    forwardStatus: "FORWARDED (SAFE)",
     sanitized: `{
   "jsonrpc": "2.0",
   "id": 103,
@@ -101,10 +121,10 @@ const SCENARIOS = {
 }`,
     verdict: "BLOCKED",
     verdictClass: "danger",
-    title: "RULE SEC-003 TRIGGERED",
+    ruleId: "RULE SEC-003 TRIGGERED",
     reason: "Remote code piped directly into shell interpreter.",
-    redactions: "0 tokens",
-    forwarded: "NO (REJECTED)",
+    maskedTokens: "0 tokens",
+    forwardStatus: "REJECTED",
     sanitized: `{
   "jsonrpc": "2.0",
   "id": 104,
@@ -120,18 +140,18 @@ const SCENARIOS = {
 let currentScenario = 'rm_rf';
 
 document.addEventListener('DOMContentLoaded', () => {
-  setupScenarios();
+  setupScenarioTabs();
   setupConfigTabs();
   renderScenario('rm_rf');
 });
 
-function setupScenarios() {
-  const cards = document.querySelectorAll('.scenario-card');
-  cards.forEach(card => {
-    card.addEventListener('click', () => {
-      cards.forEach(c => c.classList.remove('active'));
-      card.classList.add('active');
-      currentScenario = card.dataset.scenario;
+function setupScenarioTabs() {
+  const tabs = document.querySelectorAll('.scenario-tab');
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      currentScenario = tab.dataset.scenario;
       renderScenario(currentScenario);
     });
   });
@@ -143,27 +163,30 @@ function renderScenario(key) {
 
   document.getElementById('raw-payload-code').textContent = data.raw;
   document.getElementById('sanitized-payload-code').textContent = data.sanitized;
-  
-  const badge = document.getElementById('verdict-badge');
-  badge.textContent = data.verdict;
-  badge.className = `col-status ${data.verdictClass === 'success' ? 'verified' : ''}`;
+
+  const tag = document.getElementById('verdict-tag');
+  tag.textContent = data.verdict;
   if (data.verdictClass === 'success') {
-    badge.style.background = '#ecfdf5';
-    badge.style.color = '#059669';
+    tag.style.background = 'rgba(16, 185, 129, 0.2)';
+    tag.style.color = '#10b981';
+    tag.style.borderColor = 'rgba(16, 185, 129, 0.3)';
   } else if (data.verdictClass === 'warning') {
-    badge.style.background = '#fffbeb';
-    badge.style.color = '#d97706';
+    tag.style.background = 'rgba(245, 158, 11, 0.2)';
+    tag.style.color = '#f59e0b';
+    tag.style.borderColor = 'rgba(245, 158, 11, 0.3)';
   } else {
-    badge.style.background = '#fef2f2';
-    badge.style.color = '#ef4444';
+    tag.style.background = 'rgba(239, 68, 68, 0.2)';
+    tag.style.color = '#ef4444';
+    tag.style.borderColor = 'rgba(239, 68, 68, 0.3)';
   }
 
-  document.getElementById('verdict-title').textContent = data.title;
-  document.getElementById('verdict-title').style.color = data.verdictClass === 'success' ? '#059669' : (data.verdictClass === 'warning' ? '#d97706' : '#ef4444');
-  document.getElementById('verdict-reason').textContent = data.reason;
+  const ruleEl = document.getElementById('verdict-rule-id');
+  ruleEl.textContent = data.ruleId;
+  ruleEl.style.color = data.verdictClass === 'success' ? '#10b981' : (data.verdictClass === 'warning' ? '#f59e0b' : '#ef4444');
 
-  document.getElementById('meta-redactions').textContent = data.redactions;
-  document.getElementById('meta-forwarded').textContent = data.forwarded;
+  document.getElementById('verdict-message').textContent = data.reason;
+  document.getElementById('tel-masked').textContent = data.maskedTokens;
+  document.getElementById('tel-forward').textContent = data.forwardStatus;
 }
 
 function setupConfigTabs() {

