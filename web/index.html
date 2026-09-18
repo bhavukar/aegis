@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MCP-Shield — Zero-Trust Security Proxy & In-Stream DLP for AI Agents</title>
-  <meta name="description" content="Zero-Trust Security Proxy & In-Stream DLP Firewall for Model Context Protocol (MCP) and Autonomous AI Agents." />
+  <title>Aegis — Zero-Trust Security Proxy & In-Stream DLP</title>
+  <meta name="description" content="Zero-Trust Security Proxy & In-Stream DLP Firewall for Autonomous Tool Chains and APIs." />
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -12,12 +12,12 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body class="dark-theme">
-  <!-- Header Navigation -->
+  <!-- Header Navigation with Strong Blur -->
   <header class="header">
     <div class="nav-container">
       <div class="brand">
-        <img src="assets/logo.svg" alt="MCP-Shield Logo" class="brand-logo" />
-        <span class="brand-name">MCP-SHIELD</span>
+        <img src="assets/logo.svg" alt="Aegis Logo" class="brand-logo" />
+        <span class="brand-name">AEGIS</span>
       </div>
       <nav class="nav">
         <a href="#console" class="nav-link">Security Console</a>
@@ -38,16 +38,16 @@
       
       <div class="hero-content">
         <h1 class="hero-title">
-          Zero-Trust Firewall & In-Stream DLP for AI Agents.
+          Zero-Trust Security & In-Stream DLP Proxy.
         </h1>
         <p class="hero-subtitle">
-          Real-time packet inspection for Model Context Protocol. Intercepts destructive OS commands, blocks unauthorized SQL table drops, and scrubs credentials in-flight.
+          Real-time packet inspection for autonomous tool chains. Intercepts destructive OS commands, blocks unauthorized database table drops, and scrubs sensitive credentials in-flight.
         </p>
 
         <div class="hero-actions">
           <div class="cli-box">
             <span class="cli-prefix">$</span>
-            <span class="cli-text">npx mcp-shield</span>
+            <span class="cli-text">npx aegis-proxy</span>
             <button class="copy-btn" onclick="copyCli()" title="Copy command">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
             </button>
@@ -97,7 +97,7 @@
           <!-- Right: Firewall Verdict & Sanitized Stream -->
           <div class="console-pane verdict-pane">
             <div class="pane-header">
-              <span class="pane-title">SHIELD INTERCEPTION VERDICT</span>
+              <span class="pane-title">AEGIS VERDICT</span>
               <span class="pane-tag" id="verdict-tag">BLOCKED</span>
             </div>
 
@@ -139,7 +139,7 @@
     <section id="capabilities" class="capabilities-section">
       <div class="capabilities-container">
         <div class="section-heading-group">
-          <h2 class="section-title">Zero-Trust Agent Security Architecture</h2>
+          <h2 class="section-title">Zero-Trust Security Architecture</h2>
           <p class="section-subtitle">Full-spectrum defense against prompt injections, rogue tool calls, and credential leakage.</p>
         </div>
 
@@ -159,7 +159,7 @@
           <div class="cap-card">
             <span class="cap-num">03</span>
             <h3 class="cap-title">Transparent stdio / SSE Proxy</h3>
-            <p class="cap-text">Zero code modifications needed. Wraps any existing MCP server binary seamlessly with less than 0.5ms inspection overhead.</p>
+            <p class="cap-text">Zero code modifications needed. Wraps any existing service binary seamlessly with less than 0.5ms inspection overhead.</p>
           </div>
 
           <div class="cap-card">
@@ -175,7 +175,7 @@
     <section id="integration" class="integration-section">
       <div class="integration-container">
         <div class="section-heading-group">
-          <h2 class="section-title">Drop-in MCP Integration</h2>
+          <h2 class="section-title">Drop-in Integration</h2>
           <p class="section-subtitle">Secure Claude Desktop, Cursor, or your custom Node.js agents in seconds.</p>
         </div>
 
@@ -187,11 +187,11 @@
         </div>
 
         <div class="code-box">
-          <pre><code id="code-content"># Wrap any MCP server directly from the command line
-mcp-shield -- npx -y @modelcontextprotocol/server-postgres postgresql://localhost/mydb
+          <pre><code id="code-content"># Wrap any tool server directly from the command line
+aegis -- npx -y @modelcontextprotocol/server-postgres postgresql://localhost/mydb
 
 # Run in audit mode without blocking execution
-mcp-shield --mode=audit -- npx -y @modelcontextprotocol/server-filesystem /Users/me</code></pre>
+aegis --mode=audit -- npx -y @modelcontextprotocol/server-filesystem /Users/me</code></pre>
           <button class="copy-btn copy-code-btn" onclick="copySnippet()">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
           </button>
@@ -205,13 +205,13 @@ mcp-shield --mode=audit -- npx -y @modelcontextprotocol/server-filesystem /Users
     <div class="footer-container">
       <div class="footer-brand">
         <img src="assets/logo.svg" alt="Logo" class="footer-logo" />
-        <span class="footer-name">MCP-SHIELD</span>
-        <p class="footer-desc">Zero-Trust Security Proxy & In-Stream DLP Firewall for Model Context Protocol.</p>
+        <span class="footer-name">AEGIS</span>
+        <p class="footer-desc">Zero-Trust Security Proxy & In-Stream DLP Firewall for Autonomous Tool Chains.</p>
       </div>
       <div class="footer-links">
         <a href="https://github.com/bhavukar/mcp-shield" target="_blank" rel="noopener">GitHub Repository</a>
-        <a href="https://modelcontextprotocol.io/" target="_blank" rel="noopener">Model Context Protocol</a>
         <a href="#console">Security Console</a>
+        <a href="#capabilities">Architecture</a>
       </div>
     </div>
     <div class="footer-bottom">
