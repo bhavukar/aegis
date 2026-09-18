@@ -1,4 +1,4 @@
-# 🛡️ MCP-Shield
+#  MCP-Shield
 
 > **Zero-Trust Security Proxy & Data Loss Prevention (DLP) Firewall for Model Context Protocol (MCP) & Autonomous AI Agents.**
 
@@ -8,7 +8,7 @@
 
 ---
 
-## ⚡ What is MCP-Shield?
+##  What is MCP-Shield?
 
 When autonomous AI agents interact with local tools, APIs, and databases via the **Model Context Protocol (MCP)**, they operate with significant privileges. Prompt injections, rogue tool calls, or accidental hallucinations can lead to catastrophic data leaks, accidental table drops, or destructive shell execution.
 
@@ -16,9 +16,9 @@ When autonomous AI agents interact with local tools, APIs, and databases via the
 
 ```mermaid
 flowchart LR
-    A[AI Agent / LLM Client] -->|JSON-RPC Tool Call| B[🛡️ MCP-Shield Proxy]
+    A[AI Agent / LLM Client] -->|JSON-RPC Tool Call| B[ MCP-Shield Proxy]
     B -->|1. Policy Check: Pass| C[DLP Engine]
-    B -.->|1. Policy Check: Block| F[⛔ Immediate Rejection Response]
+    B -.->|1. Policy Check: Block| F[ Immediate Rejection Response]
     C -->|2. Redact Leaked Secrets| D[Sanitized Request]
     D -->|3. Safe Forwarding| E[Target MCP Server]
     E -->|4. Tool Result Output| B
@@ -27,19 +27,19 @@ flowchart LR
 
 ---
 
-## ✨ Core Features
+##  Core Features
 
-- 🛑 **Destructive Command Interception**: Intercepts dangerous operations like `rm -rf /`, `DROP TABLE`, `chmod 777`, `git push --force origin main`, and arbitrary network pipe execution (`curl | sh`).
-- 🔐 **Zero-Latency In-Stream DLP**: Automatically scrubs and masks AWS access keys, OpenAI API tokens, GitHub personal tokens, JWTs, private SSH keys, and database connection strings.
-- ⚡ **Zero-Overhead Transparent Proxy**: Wraps any standard `stdio` or `SSE` MCP server without modifying a single line of your existing server code.
-- 🎯 **Configurable Enforcement Modes**:
+-  **Destructive Command Interception**: Intercepts dangerous operations like `rm -rf /`, `DROP TABLE`, `chmod 777`, `git push --force origin main`, and arbitrary network pipe execution (`curl | sh`).
+-  **Zero-Latency In-Stream DLP**: Automatically scrubs and masks AWS access keys, OpenAI API tokens, GitHub personal tokens, JWTs, private SSH keys, and database connection strings.
+-  **Zero-Overhead Transparent Proxy**: Wraps any standard `stdio` or `SSE` MCP server without modifying a single line of your existing server code.
+-  **Configurable Enforcement Modes**:
   - `enforce`: Blocks risky requests instantly with structured JSON-RPC error codes.
   - `audit`: Logs violations silently without interrupting tool execution.
   - `permissive`: Sanitizes data in-place and passes modified arguments through.
 
 ---
 
-## 🚀 Quickstart
+##  Quickstart
 
 ### 1. Installation
 ```bash
@@ -91,7 +91,7 @@ console.log(intercepted);
 
 ---
 
-## 🛡️ Built-in DLP Patterns
+##  Built-in DLP Patterns
 
 | Secret / Threat Pattern | Action | Example Redaction |
 | :--- | :--- | :--- |
@@ -105,7 +105,7 @@ console.log(intercepted);
 
 ---
 
-## 🌐 Interactive Web Landing Page
+##  Interactive Web Landing Page
 
 The project includes an interactive web demo inspired by Japanese avant-garde minimalism (`pasur.co.jp`).
 
@@ -117,6 +117,6 @@ npx serve web
 
 ---
 
-## 📜 License
+##  License
 
 MIT License © 2026 Bhavuk Arora

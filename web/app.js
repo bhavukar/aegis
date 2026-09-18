@@ -15,7 +15,6 @@ const SCENARIOS = {
 }`,
     verdict: "BLOCKED",
     verdictClass: "danger",
-    icon: "⛔",
     title: "RULE SEC-001 TRIGGERED",
     reason: "Destructive recursive directory removal detected on root/system path.",
     redactions: "0 tokens",
@@ -44,7 +43,6 @@ const SCENARIOS = {
 }`,
     verdict: "CONFIRMATION REQUIRED",
     verdictClass: "warning",
-    icon: "⚠️",
     title: "RULE SEC-002 TRIGGERED",
     reason: "High-risk SQL statement modifying schema or dropping tables.",
     redactions: "0 tokens",
@@ -73,7 +71,6 @@ const SCENARIOS = {
 }`,
     verdict: "SANITIZED & FORWARDED",
     verdictClass: "success",
-    icon: "🔒",
     title: "DLP TOKEN SCRUB APPLIED",
     reason: "Scrubbed 2 sensitive API credential tokens in-flight.",
     redactions: "2 tokens redacted",
@@ -104,7 +101,6 @@ const SCENARIOS = {
 }`,
     verdict: "BLOCKED",
     verdictClass: "danger",
-    icon: "⛔",
     title: "RULE SEC-003 TRIGGERED",
     reason: "Remote code piped directly into shell interpreter.",
     redactions: "0 tokens",
@@ -162,7 +158,6 @@ function renderScenario(key) {
     badge.style.color = '#ef4444';
   }
 
-  document.getElementById('indicator-icon').textContent = data.icon;
   document.getElementById('verdict-title').textContent = data.title;
   document.getElementById('verdict-title').style.color = data.verdictClass === 'success' ? '#059669' : (data.verdictClass === 'warning' ? '#d97706' : '#ef4444');
   document.getElementById('verdict-reason').textContent = data.reason;
@@ -234,13 +229,13 @@ const intercepted = shield.interceptRequest({
 
 window.copyCli = function() {
   navigator.clipboard.writeText('npx mcp-shield').then(() => {
-    alert('Copied "npx mcp-shield" to clipboard!');
+    alert('Copied "npx mcp-shield" to clipboard.');
   });
 };
 
 window.copySnippet = function() {
   const code = document.getElementById('code-content').textContent;
   navigator.clipboard.writeText(code).then(() => {
-    alert('Configuration copied to clipboard!');
+    alert('Configuration copied to clipboard.');
   });
 };
