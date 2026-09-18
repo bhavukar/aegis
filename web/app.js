@@ -1,21 +1,21 @@
 import { initLightRays } from './light-rays.js';
 
-// Initialize LightRays WebGL Component in Hero
+// Initialize LightRays with Neutral White Light
 const raysContainer = document.getElementById('light-rays-container');
 if (raysContainer) {
   initLightRays(raysContainer, {
     raysOrigin: 'top-center',
-    raysColor: '#00f0ff',
-    raysSpeed: 1.3,
-    lightSpread: 0.85,
-    rayLength: 1.8,
-    pulsating: true,
+    raysColor: '#ffffff',
+    raysSpeed: 1.0,
+    lightSpread: 0.8,
+    rayLength: 1.6,
+    pulsating: false,
     fadeDistance: 1.0,
-    saturation: 1.0,
+    saturation: 0.0,
     followMouse: true,
-    mouseInfluence: 0.18,
-    noiseAmount: 0.08,
-    distortion: 0.06
+    mouseInfluence: 0.12,
+    noiseAmount: 0.05,
+    distortion: 0.02
   });
 }
 
@@ -34,7 +34,6 @@ const SCENARIOS = {
   }
 }`,
     verdict: "BLOCKED",
-    verdictClass: "danger",
     ruleId: "RULE SEC-001 TRIGGERED",
     reason: "Destructive recursive directory removal detected on root/system path.",
     maskedTokens: "0 tokens",
@@ -62,7 +61,6 @@ const SCENARIOS = {
   }
 }`,
     verdict: "CONFIRMATION REQUIRED",
-    verdictClass: "warning",
     ruleId: "RULE SEC-002 TRIGGERED",
     reason: "High-risk SQL statement modifying schema or dropping tables.",
     maskedTokens: "0 tokens",
@@ -90,7 +88,6 @@ const SCENARIOS = {
   }
 }`,
     verdict: "SANITIZED & FORWARDED",
-    verdictClass: "success",
     ruleId: "DLP IN-FLIGHT REDACTION",
     reason: "Scrubbed 2 sensitive API credential tokens from arguments.",
     maskedTokens: "2 tokens redacted",
@@ -120,7 +117,6 @@ const SCENARIOS = {
   }
 }`,
     verdict: "BLOCKED",
-    verdictClass: "danger",
     ruleId: "RULE SEC-003 TRIGGERED",
     reason: "Remote code piped directly into shell interpreter.",
     maskedTokens: "0 tokens",
@@ -164,26 +160,8 @@ function renderScenario(key) {
   document.getElementById('raw-payload-code').textContent = data.raw;
   document.getElementById('sanitized-payload-code').textContent = data.sanitized;
 
-  const tag = document.getElementById('verdict-tag');
-  tag.textContent = data.verdict;
-  if (data.verdictClass === 'success') {
-    tag.style.background = 'rgba(16, 185, 129, 0.2)';
-    tag.style.color = '#10b981';
-    tag.style.borderColor = 'rgba(16, 185, 129, 0.3)';
-  } else if (data.verdictClass === 'warning') {
-    tag.style.background = 'rgba(245, 158, 11, 0.2)';
-    tag.style.color = '#f59e0b';
-    tag.style.borderColor = 'rgba(245, 158, 11, 0.3)';
-  } else {
-    tag.style.background = 'rgba(239, 68, 68, 0.2)';
-    tag.style.color = '#ef4444';
-    tag.style.borderColor = 'rgba(239, 68, 68, 0.3)';
-  }
-
-  const ruleEl = document.getElementById('verdict-rule-id');
-  ruleEl.textContent = data.ruleId;
-  ruleEl.style.color = data.verdictClass === 'success' ? '#10b981' : (data.verdictClass === 'warning' ? '#f59e0b' : '#ef4444');
-
+  document.getElementById('verdict-tag').textContent = data.verdict;
+  document.getElementById('verdict-rule-id').textContent = data.ruleId;
   document.getElementById('verdict-message').textContent = data.reason;
   document.getElementById('tel-masked').textContent = data.maskedTokens;
   document.getElementById('tel-forward').textContent = data.forwardStatus;

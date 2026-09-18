@@ -1,8 +1,8 @@
-// LightRays WebGL Component (Integrated from React Bits)
+// LightRays WebGL Component (Clean Neutral Rays)
 
 const hexToRgb = (hex) => {
   const m = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-  return m ? [parseInt(m[1], 16) / 255, parseInt(m[2], 16) / 255, parseInt(m[3], 16) / 255] : [0, 1, 1];
+  return m ? [parseInt(m[1], 16) / 255, parseInt(m[2], 16) / 255, parseInt(m[3], 16) / 255] : [1, 1, 1];
 };
 
 const getAnchorAndDir = (origin, w, h) => {
@@ -32,17 +32,17 @@ export function initLightRays(container, options = {}) {
 
   const {
     raysOrigin = 'top-center',
-    raysColor = '#00f0ff',
-    raysSpeed = 1.2,
-    lightSpread = 0.85,
-    rayLength = 1.6,
-    pulsating = true,
+    raysColor = '#ffffff',
+    raysSpeed = 1.0,
+    lightSpread = 0.8,
+    rayLength = 1.5,
+    pulsating = false,
     fadeDistance = 1.0,
-    saturation = 1.0,
+    saturation = 0.0,
     followMouse = true,
-    mouseInfluence = 0.15,
-    noiseAmount = 0.08,
-    distortion = 0.05,
+    mouseInfluence = 0.1,
+    noiseAmount = 0.05,
+    distortion = 0.02,
     lightMode = false
   } = options;
 
@@ -54,13 +54,11 @@ export function initLightRays(container, options = {}) {
   canvas.style.left = '0';
   canvas.style.pointerEvents = 'none';
   canvas.style.zIndex = '0';
+  canvas.style.opacity = '0.45';
   container.appendChild(canvas);
 
   const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
-  if (!gl) {
-    console.warn('WebGL not supported for LightRays');
-    return;
-  }
+  if (!gl) return;
 
   const vertSrc = `
 attribute vec2 position;
@@ -178,7 +176,6 @@ void main() {
     gl.shaderSource(s, source);
     gl.compileShader(s);
     if (!gl.getShaderParameter(s, gl.COMPILE_STATUS)) {
-      console.error(gl.getShaderInfoLog(s));
       gl.deleteShader(s);
       return null;
     }
@@ -193,7 +190,6 @@ void main() {
   gl.linkProgram(prog);
 
   if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) {
-    console.error(gl.getProgramInfoLog(prog));
     return;
   }
   gl.useProgram(prog);
