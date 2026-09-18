@@ -38,7 +38,7 @@ export class MCPShieldProxy {
             id: jsonRpcMessage.id,
             error: {
               code: -32001,
-              message: `[MCP-SHIELD BLOCKED] ${evalResult.matchedRule?.reason || 'Violates security policy.'}`,
+              message: `[AEGIS BLOCKED] ${evalResult.matchedRule?.reason || 'Violates security policy.'}`,
               data: { ruleId: evalResult.matchedRule?.id }
             }
           },
@@ -70,4 +70,6 @@ export class MCPShieldProxy {
   }
 }
 
+export { MCPShieldProxy as AegisProxy };
 export { DLPEngine, PolicyEngine };
+

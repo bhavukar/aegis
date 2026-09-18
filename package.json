@@ -1,9 +1,11 @@
 {
-  "name": "mcp-shield",
+  "name": "aegis-proxy",
   "version": "0.1.0",
-  "description": "Zero-Trust Security Proxy & DLP Firewall for Model Context Protocol (MCP) and AI Agents",
+  "description": "Zero-Trust Security Proxy & In-Stream DLP Firewall for Autonomous Tool Chains and APIs",
   "main": "dist/index.js",
   "bin": {
+    "aegis": "./bin/mcp-shield.js",
+    "aegis-proxy": "./bin/mcp-shield.js",
     "mcp-shield": "./bin/mcp-shield.js"
   },
   "scripts": {
@@ -12,13 +14,13 @@
     "test": "node --test"
   },
   "keywords": [
-    "mcp",
-    "model-context-protocol",
-    "ai-agent",
-    "security",
+    "aegis",
+    "security-proxy",
     "dlp",
     "firewall",
     "zero-trust",
+    "mcp",
+    "ai-agent",
     "claude",
     "cursor"
   ],

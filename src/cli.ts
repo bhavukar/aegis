@@ -2,7 +2,7 @@
 import { MCPShieldProxy } from './index.js';
 import * as readline from 'readline';
 
-console.error('[MCP-SHIELD] Zero-Trust Security Proxy & DLP Firewall initialized.');
+console.error('[AEGIS] Zero-Trust Security Proxy & DLP Firewall initialized.');
 
 const proxy = new MCPShieldProxy({
   mode: 'enforce',
@@ -22,7 +22,7 @@ rl.on('line', (line) => {
     const msg = JSON.parse(line);
     const result = proxy.interceptRequest(msg);
     if (result.action === 'block') {
-      console.error(`\x1b[31m[MCP-SHIELD-ALERT] Intercepted and blocked: ${result.reason}\x1b[0m`);
+      console.error(`\x1b[31m[AEGIS-ALERT] Intercepted and blocked: ${result.reason}\x1b[0m`);
       console.log(JSON.stringify(result.message));
     } else {
       console.log(JSON.stringify(result.message));
