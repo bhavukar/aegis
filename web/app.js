@@ -43,7 +43,7 @@ const SCENARIOS = {
   "id": 101,
   "error": {
     "code": -32001,
-    "message": "[MCP-SHIELD BLOCKED] Prevented destructive recursive deletion of root directory.",
+    "message": "[AEGIS BLOCKED] Prevented destructive recursive deletion of root directory.",
     "data": { "ruleId": "SEC-001" }
   }
 }`
@@ -70,7 +70,7 @@ const SCENARIOS = {
   "id": 102,
   "error": {
     "code": -32002,
-    "message": "[MCP-SHIELD GATE] High-risk schema deletion requires human confirmation.",
+    "message": "[AEGIS GATE] High-risk schema deletion requires human confirmation.",
     "data": { "ruleId": "SEC-002" }
   }
 }`
@@ -126,7 +126,7 @@ const SCENARIOS = {
   "id": 104,
   "error": {
     "code": -32001,
-    "message": "[MCP-SHIELD BLOCKED] Remote code piped directly into shell interpreter.",
+    "message": "[AEGIS BLOCKED] Remote code piped directly into shell interpreter.",
     "data": { "ruleId": "SEC-003" }
   }
 }`
@@ -172,20 +172,20 @@ function setupConfigTabs() {
   const codeContent = document.getElementById('code-content');
 
   const configs = {
-    cli: `# Wrap any MCP server directly from the command line
-mcp-shield -- npx -y @modelcontextprotocol/server-postgres postgresql://localhost/mydb
+    cli: `# Wrap any tool server directly from the command line
+aegis -- npx -y @modelcontextprotocol/server-postgres postgresql://localhost/mydb
 
 # Run in audit mode without blocking execution
-mcp-shield --mode=audit -- npx -y @modelcontextprotocol/server-filesystem /Users/me`,
+aegis --mode=audit -- npx -y @modelcontextprotocol/server-filesystem /Users/me`,
     claude: `// claude_desktop_config.json
 {
   "mcpServers": {
     "filesystem-secured": {
-      "command": "mcp-shield",
+      "command": "aegis",
       "args": ["--", "npx", "-y", "@modelcontextprotocol/server-filesystem", "/Users/me/Projects"]
     },
     "postgres-secured": {
-      "command": "mcp-shield",
+      "command": "aegis",
       "args": ["--mode=enforce", "--", "npx", "-y", "@modelcontextprotocol/server-postgres", "postgresql://localhost/mydb"]
     }
   }
@@ -194,14 +194,14 @@ mcp-shield --mode=audit -- npx -y @modelcontextprotocol/server-filesystem /Users
 {
   "mcpServers": {
     "terminal-secured": {
-      "command": "mcp-shield",
+      "command": "aegis",
       "args": ["--", "npx", "-y", "@modelcontextprotocol/server-everything"]
     }
   }
 }`,
-    sdk: `import { MCPShieldProxy } from 'mcp-shield';
+    sdk: `import { AegisProxy } from 'aegis-proxy';
 
-const shield = new MCPShieldProxy({
+const shield = new AegisProxy({
   mode: 'enforce',
   redactSecrets: true,
   blockDestructive: true
@@ -229,8 +229,8 @@ const intercepted = shield.interceptRequest({
 }
 
 window.copyCli = function() {
-  navigator.clipboard.writeText('npx mcp-shield').then(() => {
-    alert('Copied "npx mcp-shield" to clipboard.');
+  navigator.clipboard.writeText('npx aegis-proxy').then(() => {
+    alert('Copied "npx aegis-proxy" to clipboard.');
   });
 };
 
